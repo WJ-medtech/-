@@ -555,17 +555,17 @@
     <div id="question-label">QUESTION <span id="q-num">1</span> / 3</div>
 
     <div id="image-grid">
-      <div class="img-slot hidden-slot current" id="slot0">
+      <div class="img-slot revealed current" id="slot0">
         <img src="" alt="">
         <div class="slot-overlay"><div class="slot-number">1</div></div>
         <div class="slot-laptime" id="lt0"></div>
       </div>
-      <div class="img-slot hidden-slot" id="slot1">
+      <div class="img-slot revealed" id="slot1">
         <img src="" alt="">
         <div class="slot-overlay"><div class="slot-number">2</div></div>
         <div class="slot-laptime" id="lt1"></div>
       </div>
-      <div class="img-slot hidden-slot" id="slot2">
+      <div class="img-slot revealed" id="slot2">
         <img src="" alt="">
         <div class="slot-overlay"><div class="slot-number">3</div></div>
         <div class="slot-laptime" id="lt2"></div>
@@ -836,7 +836,7 @@ function loadQuestion() {
   for (let i = 0; i < 3; i++) {
     const slot = document.getElementById('slot'+i);
     slot.querySelector('img').src = imgSrc(imgs[i]);
-    slot.className = 'img-slot hidden-slot';
+    slot.className = 'img-slot revealed';
     slot.classList.toggle('current', i===0);
     document.getElementById('lt'+i).textContent = '';
     slot.querySelector('.slot-number').textContent = i+1;
@@ -867,8 +867,7 @@ function pinpon() {
   lapTimes.push(ms);
 
   const slot = document.getElementById('slot'+currentSlot);
-  slot.classList.remove('hidden-slot','current');
-  slot.classList.add('revealed');
+  slot.classList.remove('current');
   document.getElementById('lt'+currentSlot).textContent = formatTime(ms);
 
   // Add lap row — no scrollIntoView so images stay in view
